@@ -1,4 +1,6 @@
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include "Stack.h"
 
 /***************** Auxiliary Functions *****************/
@@ -52,7 +54,46 @@ int isEmptyStack(const Stack* s)
 
 void flipBetweenHashes(const char* sentence)
 {
-	// add your code here
+	if (!sentence) // empty string
+		return;
+	
+	while (*sentence) // main loop - iterate over the string
+		if (*sentence == '#') 
+		{
+			// create and initialize a helper stack
+			Stack stack; 
+			initStack(&stack);
+
+			// skip the detected hash
+			// iterate over the string until the next hash
+			// store the string characters in the helper stack
+			for (sentence++; *sentence != '#'; sentence++) 
+			{	
+				if (!*sentence) // edge case
+				{ 
+					destroyStack(&stack);
+					putchar('\n'); // linebreak
+					return;
+				}
+
+				push(&stack, *sentence);
+			}
+			
+			sentence++; // skip the second hash
+
+			// print the characters stored in the stack
+			while (!isEmptyStack(&stack))
+				putchar(pop(&stack));
+			
+			destroyStack(&stack);
+		}
+		else // hash not detected
+		{
+			putchar(*sentence);
+			sentence++;
+		}
+
+	putchar('\n'); // linebreak
 }
 
 int isPalindrome(Stack* s)
@@ -94,3 +135,4 @@ charNode* insertNode(charNode* head, charNode* node) {
 	node->next = head;
 	return node;
 }
+
