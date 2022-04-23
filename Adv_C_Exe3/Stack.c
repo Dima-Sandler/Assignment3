@@ -54,7 +54,7 @@ int isEmptyStack(const Stack* s)
 
 void flipBetweenHashes(const char* sentence)
 {
-	if (!sentence) // empty string
+	if (!sentence || !*sentence) // edge case or empty string
 		return;
 	
 	while (*sentence) // main loop - iterate over the string
@@ -98,7 +98,46 @@ void flipBetweenHashes(const char* sentence)
 
 int isPalindrome(Stack* s)
 {
-	// add your code here
+	if (!s) // edge case
+		return -1;
+
+	if (isEmptyStack(s))
+		return 1;
+
+	int size = 0;
+	// create and initialize a helper stack
+	Stack t; 
+	initStack(&t);
+
+	// loop 1 - get the stack size
+	while (!isEmptyStack(s))
+	{
+		push(&t, pop(s));
+		size++;
+	}
+
+	if (size == 1)
+	{   // 1 element in the stack
+		destroyStack(&t);
+		return 1;
+	}
+
+	// loop 2 - break the stack in half
+	for (int i = 0; i < size / 2; i++)
+		push(s, pop(&t));
+
+	if (size % 2)
+		pop(&t); // remove excess element
+
+	// loop 3 - compare half stacks
+	while (!isEmptyStack(s))
+		if (pop(s) != pop(&t))
+		{ // not equel
+			destroyStack(&t);
+			return 0;
+		}	
+	
+	return 1;
 }
 
 void rotateStack(Stack* s, int n)
