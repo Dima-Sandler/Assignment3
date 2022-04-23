@@ -7,6 +7,7 @@
 
 void deleteList(charNode*);
 charNode* createNode(char), *insertNode(charNode*, charNode*);
+int COUNTERSTACK(const Stack);
 
 /***************** Stack ADT Implementation *****************/
 
@@ -142,7 +143,45 @@ int isPalindrome(Stack* s)
 
 void rotateStack(Stack* s, int n)
 {
-	// add your code here
+	if (isEmptyStack(s))
+	{
+		printf("Empty Stack");
+		return;
+	}
+	if (s->head->next == NULL)
+	{
+		return;
+	}
+	int sum = COUNTERSTACK(*s);
+	if (n > sum)
+	{
+		printf("error, too big n!");
+		return;
+	}
+	if (n == sum)
+	{
+		return;
+	}
+	Stack last, first;
+	last.head = NULL, first.head = NULL;
+	for (int i = 0; i < n; i++)
+	{
+		push(&last, pop(s));
+	}
+	while (!isEmptyStack(s))
+	{
+		push(&first, pop(s));
+	}
+	s->head = NULL;
+	for (int i = 0; i < n; i++)
+	{
+		char c = pop(&last);
+		push(s, c);
+	}
+	while (!isEmptyStack(&first))
+	{
+		push(s, pop(&first));
+	}
 }
 
 void deleteList(charNode* head) {
@@ -173,5 +212,22 @@ charNode* insertNode(charNode* head, charNode* node) {
 
 	node->next = head;
 	return node;
+}
+
+int COUNTERSTACK(const Stack s)
+{
+	if (isEmptyStack(&s))
+	{
+		printf("Empty Stack");
+		return 0;
+	}
+	int counter = 0;
+	charNode* head = s.head;
+	while (head != NULL)
+	{
+		counter++;
+		head = head->next;
+	}
+	return counter;
 }
 
