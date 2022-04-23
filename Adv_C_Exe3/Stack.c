@@ -55,8 +55,10 @@ int isEmptyStack(const Stack* s)
 
 void flipBetweenHashes(const char* sentence)
 {
-	if (!sentence || !*sentence) // edge case or empty string
+	if (!sentence || !*sentence) { // edge case or empty string
+		putchar('\n'); // linebreak
 		return;
+	}
 	
 	while (*sentence) // main loop - iterate over the string
 		if (*sentence == '#') 
@@ -144,20 +146,16 @@ int isPalindrome(Stack* s)
 void rotateStack(Stack* s, int n)
 {
 	if (isEmptyStack(s))
-	{
-		printf("Empty Stack");
 		return;
-	}
+
 	if (s->head->next == NULL)
 	{
 		return;
 	}
 	int sum = COUNTERSTACK(*s);
 	if (n > sum)
-	{
-		printf("error, too big n!");
 		return;
-	}
+
 	if (n == sum)
 	{
 		return;
