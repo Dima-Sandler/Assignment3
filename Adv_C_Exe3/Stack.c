@@ -6,8 +6,8 @@
 /***************** Auxiliary Functions *****************/
 
 void deleteList(charNode*);
-charNode* createNode(char), *insertNode(charNode*, charNode*);
 int COUNTERSTACK(const Stack);
+charNode* createNode(char), *insertNode(charNode*, charNode*);
 
 /***************** Stack ADT Implementation *****************/
 

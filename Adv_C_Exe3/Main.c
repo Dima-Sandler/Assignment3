@@ -1,17 +1,12 @@
 #define _CRT_SECURE_NO_WARNINGS
+#define stringLEN 100
 
 #include <stdio.h>
 #include <string.h>
-
 #include "Stack.h"
 #include "Queue.h"
 
-#define stringLEN 100
-
-/***************** Auxiliary Functions *****************/
-
-void deleteList(charNode*), test_unit1(int), test_unit2(int), test_unit3(int);
-charNode* createNode(char), * insertNode(charNode*, charNode*);
+void test_unit1(int), test_unit2(int), test_unit3(int);
 
 void main()
 {
