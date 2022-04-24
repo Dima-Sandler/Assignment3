@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include "Queue.h"
 
-void deleteList(intNode*), flipflop(Queue*);
+void _deleteList(intNode*), flipflop(Queue*);
 int numofNodes(Queue*), sumofNodes(Queue*);
 
 /***************** Queue ADT Implementation *****************/
@@ -18,7 +18,7 @@ void destroyQueue(Queue* q)
 	if (q->head == NULL && q->tail == NULL) // empty queue
 		return;
 	
-	deleteList(q->head);
+	_deleteList(q->head);
 	q->head = NULL;
 }
 
@@ -168,7 +168,7 @@ void sortKidsFirst(Queue* q)
 	}
 }
 
-void deleteList(intNode* head) {
+void _deleteList(intNode* head) {
 	intNode* node = head;
 
 	while (head) {
