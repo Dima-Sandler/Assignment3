@@ -13,9 +13,9 @@ void main()
 {
 	/***************** Test of Part A - Stack ADT *****************/
 	
-	test_unit1(1);
-	test_unit2(1);
-	test_unit3(2);
+	test_unit1(4);
+	test_unit2(5);
+	test_unit3(5);
 
 	/***************** Test of Part B - Queue ADT *****************/
 
@@ -29,7 +29,7 @@ void main()
 	enqueue(&tmp, 1);
 	enqueue(&tmp, 9);
 	//rotateQueue(&tmp);
-	//cutAndReplace(&tmp);
+	cutAndReplace(&tmp);
 	sortKidsFirst(&tmp);
 	destroyQueue(&tmp);
 }
