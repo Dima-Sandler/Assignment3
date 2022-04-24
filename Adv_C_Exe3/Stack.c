@@ -45,7 +45,6 @@ char pop(Stack* s)
 	return data; // return the saved data
 }
 
-
 int isEmptyStack(const Stack* s)
 {
 	return !s->head;
@@ -56,39 +55,38 @@ int isEmptyStack(const Stack* s)
 void flipBetweenHashes(const char* sentence)
 {
 	if (!sentence || !*sentence) { // edge case or empty string
-		putchar('\n'); // linebreak
+		putchar('\n');
 		return;
 	}
 	
 	while (*sentence) // main loop - iterate over the string
-		if (*sentence == '#') 
+		if (*sentence == '#')
 		{
 			// create and initialize a helper stack
-			Stack stack; 
+			Stack stack;
 			initStack(&stack);
 
 			// skip the detected hash
 			// iterate over the string until the next hash
 			// store the string characters in the helper stack
-			for (sentence++; *sentence != '#'; sentence++) 
-			{	
+			for (sentence++; *sentence != '#'; sentence++)
+			{
 				if (!*sentence) // edge case
-				{ 
+				{
 					destroyStack(&stack);
-					putchar('\n'); // linebreak
+					putchar('\n');
+					
 					return;
 				}
 
 				push(&stack, *sentence);
 			}
-			
+
 			sentence++; // skip the second hash
 
 			// print the characters stored in the stack
 			while (!isEmptyStack(&stack))
 				putchar(pop(&stack));
-			
-			destroyStack(&stack);
 		}
 		else // hash not detected
 		{
@@ -96,7 +94,7 @@ void flipBetweenHashes(const char* sentence)
 			sentence++;
 		}
 
-	putchar('\n'); // linebreak
+	putchar('\n');
 }
 
 int isPalindrome(Stack* s)
@@ -125,12 +123,13 @@ int isPalindrome(Stack* s)
 		return 1;
 	}
 
-	// loop 2 - break the stack in half
+	// loop 2 - bisect the stack
 	for (int i = 0; i < size / 2; i++)
 		push(s, pop(&t));
-
+	
+	// remove excess element if any
 	if (size % 2)
-		pop(&t); // remove excess element
+		pop(&t); 
 
 	// loop 3 - compare half stacks
 	while (!isEmptyStack(s))
@@ -211,7 +210,6 @@ charNode* insertNode(charNode* head, charNode* node) {
 	node->next = head;
 	return node;
 }
-
 int COUNTERSTACK(const Stack s)
 {
 	if (isEmptyStack(&s))

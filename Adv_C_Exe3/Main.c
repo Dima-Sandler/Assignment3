@@ -17,6 +17,20 @@ void main()
 	test_unit3(2);
 
 	/***************** Test of Part B - Queue ADT *****************/
+
+	Queue tmp;
+	initQueue(&tmp);
+	enqueue(&tmp, 6);
+	enqueue(&tmp, 1);
+	enqueue(&tmp, 5);
+	enqueue(&tmp, 2);
+	enqueue(&tmp, 3);
+	enqueue(&tmp, 1);
+	enqueue(&tmp, 9);
+	//rotateQueue(&tmp);
+	//cutAndReplace(&tmp);
+	sortKidsFirst(&tmp);
+	destroyQueue(&tmp);
 }
 
 void test_unit1(int cnt)
